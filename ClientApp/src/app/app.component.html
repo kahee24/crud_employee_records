@@ -1,0 +1,44 @@
+
+ <div class="header-action">
+  Search: <input type="text"/>
+  <button type="button" (click) ="newEmployee()">New</button>
+</div>
+
+
+
+<div class="data-grid" *ngIf ="!isModifying">
+
+  <table>
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>First Name</td>
+        <td> Middle Name</td>
+        <td> Last Name </td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of data">
+        <td>{{row.id}}</td>
+        <td>{{row.firstName}}</td>
+        <td>{{row.middleName}}</td>
+        <td>{{row.lastName}}</td>
+        <td><button (click)="editEmployee(row)">Edit</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+<div class="editor" *ngIf="isModifying">
+
+  <div>First Name: <input type="text" [(ngModel)]="employee.firstName" /></div>
+  <div>Middle Name: <input type="text" [(ngModel)]="employee.middleName" /></div>
+  <div>Last Name: <input type="text" [(ngModel)]="employee.lastName" /></div>
+
+  <button (click)="save()" *ngIf="isNew">Save</button>
+  <button (click)="update()" *ngIf="!isNew">Update</button>
+  <button (click)="cancel()">Cancel</button>
+</div>
